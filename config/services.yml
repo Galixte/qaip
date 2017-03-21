@@ -1,0 +1,11 @@
+services:
+    threedi.qaip.listener:
+        class: threedi\qaip\event\main_listener
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@dbal.conn'
+            - '@template'
+            - '@user'
+        tags:
+            - { name: event.listener }

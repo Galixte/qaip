@@ -1,0 +1,32 @@
+{
+	"name": "threedi/qaip",
+	"type": "phpbb-extension",
+	"description": "Quote images as thumbnails.",
+	"homepage": "http://3di.space/32/",
+	"version": "1.0.0-b2",
+	"time": "2017-02-20",
+	"license": "GPL-2.0",
+	"authors": [
+		{
+			"name": "3Di",
+			"email": "three3di@hotmail.it",
+			"homepage": "http://3di.space/32/",
+			"role": "Lead Developer"
+		}
+	],
+	"require": {
+		"php": ">=5.3.3"
+	},
+	"extra": {
+		"display-name": "Quote Attachments Img in Posts",
+		"soft-require": {
+			"phpbb/phpbb": ">=3.1.6,<3.3.0@dev"
+		},
+		"version-check": {
+			"host": "3d-i.github.io",
+			"directory": "/site/vchecks",
+			"filename": "qaip-vcheck.json"
+		}
+	}
+
+}
