@@ -135,6 +135,40 @@ class main_listener implements EventSubscriberInterface
 
 		if ($mode == 'quote' && !$submit && !$preview && !$refresh)
 		{
+			/**
+			 * Is a topic poll?
+			 */
+			if (sizeof($post_data['poll_options']) || !empty($post_data['poll_title']))
+			{
+				$post_data_poll = $post_data['post_text'];
+				/**
+				* Taking care of phpBB versions
+				*/
+				if ( phpbb_version_compare(PHPBB_VERSION, '3.2.0-dev', '>=') )
+				{
+				/**
+				 * phpBB 3.2 - stressing the ending '[/quote]\n'
+				 */
+				$post_data_poll = substr_replace( $post_data_poll, "[/quote]", - 10 );
+				}
+				else
+				{
+				/**
+				 * phpBB 3.1 - stressing the ending '[/quote]\n'
+				 */
+				$post_data_poll = substr_replace( $post_data_poll, "[/quote]", - 9 );
+				}
+				/**
+				 * We need to add add a trailing space at the end of the stripped parsed message
+				 * to avoid a potential bug, urls/smilies not correctly parsed after it
+				 * (see phpBB message parser code)
+				 */
+				$poll_space = " ";
+				$message_parser->message = "{$post_data_poll}" . "{$poll_space}";
+			}
+			/**
+			* Are BBcodes allowed?
+			*/
 			if ($this->config['allow_bbcode'])
 			{
 				$img_open_tag	= ($this->auth->acl_get('f_bbcode', $forum_id) && $this->auth->acl_get('f_img', $forum_id)) ? '[img]' : ' ';
