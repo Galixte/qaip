@@ -164,7 +164,7 @@ class main_listener implements EventSubscriberInterface
 				 * (see phpBB message parser code)
 				 */
 				$poll_space = " ";
-				$message_parser->message = "{$post_data_poll}" . "{$poll_space}";
+				$message_parser->message = "{$post_data_poll}{$poll_space}";
 			}
 			/**
 			* Are BBcodes allowed?
